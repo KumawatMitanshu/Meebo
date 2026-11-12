@@ -750,11 +750,14 @@ html{font-synthesis:none}
 .signoff .so-s{font-style:normal;color:var(--star);font-size:11px;vertical-align:1px;margin:0 6px}
 
 /* V8 — premium pass (careful): opening curtain, quieter WhatsApp, softer motion, more air, view cursor */
-.pre{position:fixed;inset:0;z-index:200;background:var(--cocoa);display:grid;place-items:center;pointer-events:none;animation:preUp .9s cubic-bezier(.77,0,.18,1) 1s forwards}
+.pre{position:fixed;inset:0;z-index:200;background:var(--cocoa);display:grid;place-items:center;pointer-events:none;animation:preUp .9s cubic-bezier(.77,0,.18,1) 1.4s forwards}
 .pre-in{display:grid;justify-items:center;gap:18px}
 .pre svg{width:min(240px,52vw);height:auto;color:var(--paper);clip-path:inset(0 100% 0 0);animation:preDraw .8s cubic-bezier(.65,0,.35,1) .1s forwards}
 .pre-line{display:block;width:min(240px,52vw);height:1px;background:rgba(255,249,236,.25);transform:scaleX(0);transform-origin:left;animation:preLine .9s cubic-bezier(.65,0,.35,1) .05s forwards}
 @keyframes preDraw{to{clip-path:inset(0 0 0 0)}}
+.pre svg .e{transform-box:fill-box;transform-origin:50% 60%;animation:preTilt .65s cubic-bezier(.34,1.56,.64,1) .75s both}
+.pre svg .e + .e{animation-delay:.85s}
+@keyframes preTilt{from{transform:rotate(18deg)}to{transform:rotate(0)}}
 @keyframes preLine{to{transform:scaleX(1)}}
 @keyframes preUp{to{transform:translateY(-100%);visibility:hidden}}
 @media (prefers-reduced-motion:reduce){.pre{display:none}}
@@ -794,7 +797,7 @@ html{background:var(--cocoa);overscroll-behavior-y:none}
 <path d="M175 12V78"/><circle cx="192" cy="61" r="17"/><circle cx="242" cy="61" r="17"/></g><g class="lstar" style="transform-box:fill-box;transform-origin:center"><g transform="translate(265 28) rotate(14)"><path d="M-1.90 -15.92Q0.00 -19.00 1.90 -15.92L5.21 -10.58Q6.35 -8.74 8.46 -8.22L14.55 -6.73Q18.07 -5.87 15.73 -3.11L11.68 1.68Q10.27 3.34 10.43 5.50L10.90 11.76Q11.17 15.37 7.82 14.00L2.01 11.62Q0.00 10.80 -2.01 11.62L-7.82 14.00Q-11.17 15.37 -10.90 11.76L-10.43 5.50Q-10.27 3.34 -11.68 1.68L-15.73 -3.11Q-18.07 -5.87 -14.55 -6.73L-8.46 -8.22Q-6.35 -8.74 -5.21 -10.58Z" fill="#FFC93C" stroke="none" stroke-linejoin="round"/>
 <circle cx="-4.2" cy="-0.6" r="2.2" fill="#2B1B14"/><circle cx="4.2" cy="-0.6" r="2.2" fill="#2B1B14"/>
 <path d="M-3.2 4.6Q0 7.4 3.2 4.6" fill="none" stroke="#2B1B14" stroke-width="2" stroke-linecap="round"/></g></g></svg><span class="pre-line"></span></div></div>
-<script>(function(){var d=document.documentElement,pre=document.getElementById('pre');try{if(sessionStorage.getItem('mb-pre')||matchMedia('(prefers-reduced-motion: reduce)').matches){pre.remove();return}sessionStorage.setItem('mb-pre','1')}catch(e){pre.remove();return}d.classList.add('preon');setTimeout(function(){pre.remove();d.classList.remove('preon')},2200)})();</script>
+<script>(function(){var d=document.documentElement,pre=document.getElementById('pre');try{if(sessionStorage.getItem('mb-pre')||matchMedia('(prefers-reduced-motion: reduce)').matches){pre.remove();return}sessionStorage.setItem('mb-pre','1')}catch(e){pre.remove();return}d.classList.add('preon');setTimeout(function(){pre.remove();d.classList.remove('preon')},2600)})();</script>
 <nav class="nav" id="nav">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="Meebo Studio, back to top"><svg role="img" aria-label="Meebo Studio" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 96"><g fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
@@ -994,10 +997,10 @@ html{background:var(--cocoa);overscroll-behavior-y:none}
     </footer>
   </div>
 </dialog>
-
 <!-- REELS -->
 <section class="reels" id="reels">
-  <div class="wrap">    <div>
+  <div class="wrap">
+    <div>
       <div class="shead">
         <p class="hand">sites move, so should your feed</p>
         <h2>Reels that look like you.</h2>
@@ -1336,7 +1339,7 @@ if(G&&window.ScrollTrigger&&!RM){
       if(el||id==='#top'){e.preventDefault();lenis.scrollTo(el||0,{offset:-72,duration:1.2});}});
     lb.addEventListener('close',()=>lenis.start());new MutationObserver(()=>{sd.open?lenis.stop():lenis.start()}).observe(sd,{attributes:true,attributeFilter:['open']});new MutationObserver(()=>{lb.open?lenis.stop():lenis.start()}).observe(lb,{attributes:true,attributeFilter:['open']});
   }
-  G.from('.hero-copy > *, .hero-side > *',{y:30,duration:1.2,ease:'expo.out',stagger:.09,delay:document.documentElement.classList.contains('preon')?1.2:0});
+  G.from('.hero-copy > *, .hero-side > *',{y:30,duration:1.2,ease:'expo.out',stagger:.09,delay:document.documentElement.classList.contains('preon')?1.6:0});
   {/* the wall: scroll opens it, then it keeps turning; drag, swipe or keep scrolling to spin it */
    const N=scards.length,pin=stageEl.querySelector('.stage-pin'),word=document.getElementById('stageWord'),cap=document.getElementById('stageCap');
    const io3=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,cl=(v,a,b)=>Math.max(a,Math.min(b,v));
